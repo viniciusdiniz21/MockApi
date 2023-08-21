@@ -6,7 +6,7 @@ namespace ExemploAPI.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ProdutoController : ControllerBase
+	public class ProdutoController : PrincipalController
 	{
 		private readonly string _produtoCaminhoArquivo;
 
@@ -72,9 +72,9 @@ namespace ExemploAPI.Controllers
 		[HttpPost]
 		public IActionResult Post([FromBody] NovoProdutoViewModel produto)
 		{
-			if (produto == null)
+			if (!ModelState.IsValid)
 			{
-				return BadRequest();
+				return ApiBadRequestResponse(ModelState);
 			}
 
 			List<ProdutoViewModel> produtos = LerProdutosDoArquivo();
@@ -91,7 +91,7 @@ namespace ExemploAPI.Controllers
 			produtos.Add(novoProduto);
 			EscreverProdutosNoArquivo(produtos);
 
-			return CreatedAtAction(nameof(Get), new { codigo = novoProduto.Codigo }, novoProduto);
+			return ApiResponse(novoProduto, "Produto criado com sucesso");
 		}
 
 		[HttpPut("{codigo}")]
