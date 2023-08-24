@@ -12,7 +12,8 @@ namespace ExemploAPI.Controllers
 			{
 				Success = true,
 				Message = message,
-				Data = data
+				Data = data,
+				Status = 200
 			};
 			return Ok(response);
 		}
@@ -24,7 +25,8 @@ namespace ExemploAPI.Controllers
 			{
 				Success = false,
 				Message = message,
-				Data = erros.Select(n => n.ErrorMessage).ToArray()	
+				Data = erros.Select(n => n.ErrorMessage).ToArray(),
+				Status = 400
 			};
 			return BadRequest(response);
 		}
