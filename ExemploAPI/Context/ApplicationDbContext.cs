@@ -8,7 +8,7 @@ namespace ExemploAPI.Context
     public class ApplicationDbContext : DbContext
     {
         private static readonly ILoggerFactory _logger = LoggerFactory.Create(p => p.AddConsole());
-        public DbSet<Usuario> Pedidos { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
