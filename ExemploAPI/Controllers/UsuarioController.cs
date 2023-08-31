@@ -1,10 +1,12 @@
 ﻿using ExemploAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExemploAPI.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
+	[Authorize]
 	public class UsuarioController : PrincipalController
 	{
 		[HttpGet]
